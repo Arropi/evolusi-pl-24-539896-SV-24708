@@ -112,6 +112,38 @@
         </div>
     </footer>
 
+    <!-- Global Password Visibility Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.password-toggle-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = button.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (!input) return;
+
+                    const isPassword = input.type === 'password';
+                    input.type = isPassword ? 'text' : 'password';
+
+                    const eyeOpen = button.querySelector('.eye-open');
+                    const eyeClosed = button.querySelector('.eye-closed');
+
+                    if (eyeOpen && eyeClosed) {
+                        if (isPassword) {
+                            eyeOpen.style.display = 'none';
+                            eyeClosed.style.display = 'block';
+                            button.setAttribute('aria-label', 'Hide password');
+                        } else {
+                            eyeOpen.style.display = 'block';
+                            eyeClosed.style.display = 'none';
+                            button.setAttribute('aria-label', 'Show password');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     @stack('scripts')
 </body>
 </html>

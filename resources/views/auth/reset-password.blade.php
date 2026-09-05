@@ -1,43 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Create Account - MLPath Platform')
+@section('title', 'Set New Password - MLPath Platform')
 
 @section('content')
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="auth-header">
-            <h1 class="auth-title">Create Account</h1>
-            <p class="auth-subtitle">Start your machine learning journey with bite-sized daily practice.</p>
+            <h1 class="auth-title">Set New Password</h1>
+            <p class="auth-subtitle">Choose a new, strong password to protect your learning progress.</p>
         </div>
 
-        <form method="POST" action="{{ route('register') }}" novalidate>
+        <form method="POST" action="{{ route('password.update') }}" novalidate>
             @csrf
 
-            <!-- Full Name Field -->
-            <div class="form-group">
-                <label for="name" class="form-label">Full Name</label>
-                <div class="form-input-wrapper">
-                    <span class="input-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </span>
-                    <input 
-                        id="name" 
-                        type="text" 
-                        name="name" 
-                        value="{{ old('name') }}" 
-                        required 
-                        autofocus 
-                        placeholder="e.g. Alex Pratama" 
-                        class="form-input @error('name') is-invalid @enderror"
-                    >
-                </div>
-                @error('name')
-                    <span class="error-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+            <!-- Password Reset Token -->
+            <input type="hidden" name="token" value="{{ $token }}">
 
             <!-- Email Address Field -->
             <div class="form-group">
@@ -53,8 +30,9 @@
                         id="email" 
                         type="email" 
                         name="email" 
-                        value="{{ old('email') }}" 
+                        value="{{ old('email', $email) }}" 
                         required 
+                        autofocus 
                         placeholder="name@example.com" 
                         class="form-input @error('email') is-invalid @enderror"
                     >
@@ -64,9 +42,9 @@
                 @enderror
             </div>
 
-            <!-- Password Field with Eye Toggle -->
+            <!-- New Password Field with Eye Toggle -->
             <div class="form-group">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">New Password</label>
                 <div class="form-input-wrapper">
                     <span class="input-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -100,9 +78,9 @@
                 @enderror
             </div>
 
-            <!-- Password Confirmation Field with Eye Toggle -->
+            <!-- New Password Confirmation Field with Eye Toggle -->
             <div class="form-group">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                <label for="password_confirmation" class="form-label">Confirm New Password</label>
                 <div class="form-input-wrapper">
                     <span class="input-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -114,7 +92,7 @@
                         type="password" 
                         name="password_confirmation" 
                         required 
-                        placeholder="Re-type your password" 
+                        placeholder="Re-type your new password" 
                         class="form-input has-toggle"
                     >
                     <button type="button" class="password-toggle-btn" data-target="password_confirmation" aria-label="Toggle confirm password visibility">
@@ -134,7 +112,7 @@
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 24px;">
-                <span>Create Account</span>
+                <span>Update Password & Sign In</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -143,8 +121,8 @@
         </form>
 
         <div class="auth-footer-link">
-            <span>Already have an account?</span>
-            <a href="{{ route('login') }}">Sign In instead</a>
+            <span>Remember your password?</span>
+            <a href="{{ route('login') }}">Back to Sign In</a>
         </div>
     </div>
 </div>
