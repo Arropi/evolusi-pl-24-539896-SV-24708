@@ -74,8 +74,19 @@ jobs:
       - name: Check composer.lock Consistency
         run: composer validate --check-lock
 
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
       - name: Run Composer Security Audit
-        run: composer audit
+        run: composer audit --locked
 
   # -------------------------------------------------------------
   # Job 3: Automated Tests with PostgreSQL

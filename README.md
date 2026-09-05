@@ -73,20 +73,4 @@ Workflow ini memiliki **3 Jobs Pengujian**:
 
 ---
 
-## 📤 Langkah Push ke Repositori GitHub
 
-Untuk menghubungkan dan mem-push projek ini ke GitHub Anda:
-
-```bash
-# 1. Tambahkan semua file ke staging
-git add .
-
-# 2. Buat initial commit
-git commit -m "feat: initial laravel project setup with supabase pgsql config and github ci actions"
-
-# 3. Hubungkan ke repositori remote GitHub Anda
-git remote add origin https://github.com/<username>/<nama-repo>.git
-
-# 4. Push ke branch main
-git push -u origin main
-```
