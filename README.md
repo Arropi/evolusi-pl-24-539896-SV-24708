@@ -1,13 +1,15 @@
 # Konstruksi PL - Laravel Application
 
-Projek backend Laravel yang dikonfigurasi untuk integrasi database PostgreSQL (Supabase) dan dilengkapi dengan GitHub Actions CI untuk verifikasi kualitas kode, keamanan dependensi, serta pengujian otomatis siap produksi.
+Projek Fullstack Laravel yang dikonfigurasi untuk integrasi database PostgreSQL (Supabase) dan dilengkapi dengan GitHub Actions CI untuk verifikasi kualitas kode, keamanan dependensi, serta pengujian otomatis siap produksi.
 
 ---
+
+## 👾 About this Project
+Ini adalah platform untuk mempelajari machine learning dengan menggunakan laravel sebagai backend dan supabase sebagai database. Dengan konsep materi dimulai dari fundamental dengan banyak analogi dan visualisasi untuk mempermudah pemahaman konsep. Serta banyak latihan soal untuk menguji pemahaman konsep dalam bentuk kode.
 
 ## 🛠️ Tech Stack
 - **Framework**: [Laravel](https://laravel.com) (PHP 8.2+)
 - **Database**: PostgreSQL / [Supabase](https://supabase.com)
-- **CI/CD**: GitHub Actions (3 Automated Jobs)
 
 ---
 
@@ -58,19 +60,3 @@ Projek backend Laravel yang dikonfigurasi untuk integrasi database PostgreSQL (S
    ```
 
 ---
-
-## 🤖 GitHub Actions CI Workflow
-
-File workflow terletak pada `.github/workflows/ci.yml`. CI ini berjalan secara otomatis pada event `push` dan `pull_request` ke branch `main`, `master`, dan `develop`.
-
-Workflow ini memiliki **3 Jobs Pengujian**:
-
-| Job | Nama | Deskripsi |
-|---|---|---|
-| **Job 1** | `code-quality` | Memvalidasi sintaks composer dan menjalankan **Laravel Pint** untuk standarisasi format & gaya kode. |
-| **Job 2** | `security-audit` | Memeriksa integritas `composer.lock` dan menjalankan **`composer audit`** untuk mendeteksi kerentanan keamanan dependensi. |
-| **Job 3** | `automated-tests` | Menjalankan service container **PostgreSQL 16**, migrasi database (`php artisan migrate`), dan eksekusi test suite (**PHPUnit / Pest**). |
-
----
-
-
